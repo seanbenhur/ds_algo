@@ -15,3 +15,9 @@ class Solution:
             n = (n/2) if n%2==0 else (3*n+1)
             length+=1
         return length
+
+if __name__ == "__main__":
+    n = int(input())
+    sol = Solution()
+    ans = sol.solve(n)
+    print(ans)
