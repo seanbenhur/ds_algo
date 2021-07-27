@@ -26,7 +26,11 @@ Geeks for geeks
 
 
 
-## Questions taken from
+## Where I Practice !?
+
+I usually open a room on https://binarysearch.com/ , select the topics I would to practice and practice
+
+Before using binary search I practiced on these sites
 
 Leetcode
 
