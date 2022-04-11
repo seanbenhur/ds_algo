@@ -1,34 +1,25 @@
 class Solution:
     def shiftGrid(self, grid: List[List[int]], k: int) -> List[List[int]]:
-        # dimensions:
-        NR = len(grid)
-        NC = len(grid[0])
-        vec = [0] * NR * NC #initialize the vector.
-        # If k is greater than the length of vector, 
-		# the shift will repeat itself in a cycle; 
-		# hence, we only care about the remainder.
-        k = k % (NR * NC)
-		
-        #step 1: put the matrix row by row to the vector.
-        for i in range(NR):
-            for j in range(NC):
-                vec[i * NC + j] = grid[i][j]
-				
-        #step 2: rotate vector k times by reverse approach.
-        self.Rev(vec, 0, NR * NC - 1) #reverse all elements.
-        self.Rev(vec, 0, k-1)       #reverse first k elements.
-        self.Rev(vec, k, NR * NC - 1) #revere last len(vec)-k elements. 
+        rows, cols = len(grid), len(grid[0])
+        vector = [0]*rows*cols
+        k = k%(rows*cols)
         
-        #step 3: put the vector to the matrix back the same way.
-        for i in range(NR):
-            for j in range(NC):
-                grid[i][j] = vec[i * NC + j]
+        for i in range(rows):
+            for j in range(cols):
+                vector[i*cols+j] = grid[i][j]
+                
+        self.reverse(vector,0,rows*cols-1)
+        self.reverse(vector,0,k-1)
+        self.reverse(vector,k,rows*cols-1)
+        
+        for i in range(rows):
+            for j in range(cols):
+                grid[i][j] = vector[i*cols+j]
+        
         return grid
-		
-    # This function returns the reverse a subset of the vector,
-	# bound by "left" and "right" elements
-    def Rev(self, vec, left, right):
-        while left < right:
-            vec[left], vec[right] = vec[right], vec[left]
-            left += 1 
-            right -= 1
+    
+    def reverse(self,nums,start,end):
+        while start < end:
+            nums[start],nums[end] = nums[end],nums[start]
+            start+=1
+            end-=1
