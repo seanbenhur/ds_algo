@@ -1,6 +1,6 @@
 """Given a roman numeral, convert it to an integer."""
 
-def roman_to_int(str):
+def roman_to_int(s):
     _dict = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
     prev = 0
     res = 0
