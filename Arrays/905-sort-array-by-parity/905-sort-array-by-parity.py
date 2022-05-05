@@ -9,4 +9,3 @@ class Solution:
                 nums[next_even], nums[next_odd] = nums[next_odd], nums[next_even]
                 next_odd -= 1
         return nums
-                
