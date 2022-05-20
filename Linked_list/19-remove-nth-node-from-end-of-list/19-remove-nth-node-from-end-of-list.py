@@ -17,27 +17,6 @@ class Solution:
         return head
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         """#two pass solution
         ptr = head
         length = 0
