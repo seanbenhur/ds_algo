@@ -1,23 +1,34 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        rows = collections.defaultdict(set) #key = row_index
-        cols = collections.defaultdict(set) #key=col_index
-        squares = collections.defaultdict(set) #key=(row_index/3, col_index/3)
         
-        for row in range(9):
-            for col in range(9):
-                
-                if board[row][col] == '.':
-                    continue
-                
-                if(board[row][col] in rows[row] or 
-                    board[row][col] in cols[col] or
-                    board[row][col] in squares[(row//3,col//3)]):
-                        
+        
+        def is_row_valid(board):
+            for row in board:
+                if not is_unit_valid(row):
+                    return False
+            return True
+        
+        
+        def is_col_valid(board):
+            for col in zip(*board):
+                if not is_unit_valid(col):
+                    return False
+            return True
+        
+        def is_square_valid(board):
+            for i in (0,3,6):
+                for j in (0,3,6):
+                    square = [board[x][y] for x in range(i,i+3)
+                             for y in range(j,j+3)]
+                    if not is_unit_valid(square):
                         return False
-                
-                cols[col].add(board[row][col])
-                rows[row].add(board[row][col])
-                squares[(row // 3, col // 3)].add(board[row][col])
-        return True        
+            return True
         
+        
+        def is_unit_valid(unit):
+            
+            res = [i for i in unit if i != '.']
+            return len(set(res))==len(res)
+        
+        
+        return is_row_valid(board) and is_col_valid(board) and is_square_valid(board)
